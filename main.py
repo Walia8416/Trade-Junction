@@ -15,7 +15,7 @@ mycursor.execute('use tradejunction')
 
 
 def login():
-
+    userData=[]
     if len(username.get()) == 0:
         tk.messagebox.showerror('Error', 'Please Enter Username!')
 
@@ -27,6 +27,7 @@ def login():
                          str(username.get())+"' AND Pass='"+str(password.get())+"'")
         c = 0
         for x in mycursor:
+            userData.append(x)
             c += 1
         if c == 0:
             tk.messagebox.showerror('Error', 'Invalid Password Or Username')
@@ -36,7 +37,7 @@ def login():
                 'Success', 'You have been logged in successfully!')
             
             win.destroy()
-            home.homeScreen()
+            home.homeScreen(userData)
 
 
 win = tk.Tk()
